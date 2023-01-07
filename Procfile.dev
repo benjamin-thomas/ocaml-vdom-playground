@@ -1,0 +1,4 @@
+# foreman start -f Procfile.dev
+dune: dune build --watch
+copy: echo _build/default/src/counters.bc.js | entr cp -f /_ ./public/
+server: live-server --port=8080 --host=localhost --no-browser ./public
