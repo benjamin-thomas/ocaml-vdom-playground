@@ -6,7 +6,8 @@ function on_ctrl_c {
 }
 
 trap on_ctrl_c INT
-trap on_ctrl_c TERM
+# trap on_ctrl_c TERM
+# trap on_ctrl_c KILL
 
 set -e
 
@@ -22,4 +23,8 @@ rm -f ./public/*.bc.js
 echo "==> Creating new dist..."
 cp -v -f _build/default/src/*.bc.js ./public
 
-exec foreman start -f Procfile.dev
+# Do not use `exec` below, or `reset` won't run.
+foreman start -f Procfile.dev
+
+# Also reset on normal process exit. Sometimes, the terminal gets messed up there too.
+reset
