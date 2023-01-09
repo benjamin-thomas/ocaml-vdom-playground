@@ -18,9 +18,9 @@ let h2 = V.elt "h2"
 let ul = V.elt "ul"
 let li = V.elt "li"
 
-let string_of_page = function
-  | Home -> "Home!"
-  | About -> "About Us"
+let frag_of_page = function
+  | Home -> "#/home"
+  | About -> "#/about"
 ;;
 
 let new_page txt page =
@@ -28,7 +28,7 @@ let new_page txt page =
     [ V.text txt ]
     ~a:
       [ V.onclick (fun _ -> ChangedPage page)
-      ; V.attr "href" "javascript:void(0)"
+      ; V.attr "href" @@ frag_of_page page
       ]
 ;;
 
@@ -37,7 +37,8 @@ let view model =
     [ h2 [ V.text "An h2 title" ]
     ; p
         [ V.text "A p tag"
-        ; V.div [ p [ V.text @@ string_of_page model.curr_page ] ]
+        ; V.div
+            [ p [ V.text @@ "Current frag: " ^ frag_of_page model.curr_page ] ]
         ]
     ; ul
         [ li [ new_page "Go to home" Home ]
