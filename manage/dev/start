@@ -1,0 +1,17 @@
+#!/bin/bash
+
+set -e
+
+echo "==> Cleaning dune..."
+dune clean
+
+echo "==> Building dune..."
+dune build
+
+echo "==> Clearing prior dist..."
+rm -f ./public/*.bc.js
+
+echo "==> Creating new dist..."
+cp -v -f _build/default/src/*.bc.js ./public
+
+exec foreman start -f Procfile.dev

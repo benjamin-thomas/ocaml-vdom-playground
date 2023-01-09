@@ -1,2 +1,2 @@
 _build/
-public/counters.bc.js
+public/*.bc.js

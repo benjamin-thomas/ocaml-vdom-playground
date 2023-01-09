@@ -1,4 +1,4 @@
-(executable
- (name counters)
- (libraries ocaml-vdom)
+(executables
+ (names counter hello)
+ (libraries ocaml-vdom routes)
  (modes js))
