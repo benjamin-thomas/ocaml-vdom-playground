@@ -1,5 +1,13 @@
 #!/bin/bash
 
+function on_ctrl_c {
+    # Sometimes, the terminal get into a bad state.
+    reset
+}
+
+trap on_ctrl_c INT
+trap on_ctrl_c TERM
+
 set -e
 
 echo "==> Cleaning dune..."
