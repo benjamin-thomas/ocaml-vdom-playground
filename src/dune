@@ -1,4 +1,6 @@
 (executables
  (names counter hello routing)
- (libraries ocaml-vdom routes)
+ (libraries ocaml-vdom js_of_ocaml routes)
+ (preprocess
+  (pps js_of_ocaml-ppx))
  (modes js))
